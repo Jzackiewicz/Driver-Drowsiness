@@ -175,12 +175,11 @@ def add_remove(li, elem):
 
 
 def main():
-    url = "http://100.125.253.31:8080/shot.jpg"
-    # camera = cv2.VideoCapture(0)
+    camera = cv2.VideoCapture(0)
 
     start_time = time.time()
     frame_counter = 0
-    # Outcomes.ON_SCREEN = ['pupils']
+
     i = 0
     face_analyzer = FaceAnalysing()
     pose_analyzer = PoseAnalysing()
@@ -189,14 +188,9 @@ def main():
 
     while True:
         frame_counter += 1
-        # ret, frame = camera.read()
-        # if not ret:
-        #     break
-
-        img_resp = requests.get(url)  #
-        img_arr = np.array(bytearray(img_resp.content), dtype=np.uint8)  #
-        frame = cv2.imdecode(img_arr, -1)  ### Getting response from online camera
-        frame = imutils.resize(frame, width=1420)  #
+        ret, frame = camera.read()
+        if not ret:
+            break
 
         # frame = imutils.resize(frame, width=1400)  # max 1920 - min 1000
         if frame_counter % Factors.OPTIMIZATION_FACTOR == 0:  # Wpływ na optymalizację kodu -> pomijanie klatek
