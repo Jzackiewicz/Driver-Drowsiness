@@ -4,7 +4,6 @@ import cv2
 import imutils
 import numpy as np
 import requests
-
 import utils
 from database import Factors, Outcomes, KEYS
 from face import FaceAnalysing
@@ -192,7 +191,7 @@ def main():
         if not ret:
             break
 
-        # frame = imutils.resize(frame, width=1400)  # max 1920 - min 1000
+        frame = imutils.resize(frame, width=1400)  # max 1920 - min 1000
         if frame_counter % Factors.OPTIMIZATION_FACTOR == 0:  # Wpływ na optymalizację kodu -> pomijanie klatek
             i += 1
             face_analyzer.initialize_frame(frame)
