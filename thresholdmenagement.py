@@ -1,6 +1,7 @@
 from database import Factors, Outcomes, KEYS
 import utils
 
+
 def add_remove(li, elem):
     if elem not in li:
         li.append(elem)

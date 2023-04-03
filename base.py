@@ -14,6 +14,7 @@ class MediaPipeAnalysing:
         self.landmarks_coords = None
         self.mesh = self.get_mesh()
 
+        #print(self.results)
     def get_mesh(self):
         if self.solution == 'Face':
             mesh = mp.solutions.face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_confidence=0.5,
@@ -57,7 +58,6 @@ class MediaPipeAnalysing:
 
         average_coords = [round(x / len(indices)), round(y / len(indices))]
         return average_coords
-
 
     @staticmethod
     def get_euclidean_distance(point1, point2):

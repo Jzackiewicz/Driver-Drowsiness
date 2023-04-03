@@ -26,7 +26,7 @@ def show_fps(frame, fps):
 
 
 def main():
-    camera = cv2.VideoCapture(0)
+    camera = cv2.VideoCapture("eniu.mp4")
 
     start_time = time.time()
     frame_counter = 0
