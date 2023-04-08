@@ -29,7 +29,7 @@ def read_thresholds_from_file():
     for line in f:
         new_factor = line.strip("\n")
         new_factors.append([new_factor])
-    print(len(new_factors))
+
     Factors.EYES_RATIO_FACTOR = float(new_factors[0][0])
     Factors.LIPS_RATIO_FACTOR = float(new_factors[1][0])
     Factors.HAND_FACE_DISTANCE_FACTOR = float(new_factors[2][0])
