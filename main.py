@@ -3,8 +3,7 @@ import time
 import cv2
 import imutils
 
-import utils
-from database import Factors, Outcomes, KEYS
+from ML.loading_data import AIanalysing
 from face import FaceAnalysing
 from pose import PoseAnalysing
 from thresholdmenagement import *
@@ -25,8 +24,8 @@ def show_fps(frame, fps):
     return frame
 
 
-def main():
-    camera = cv2.VideoCapture("eniu.mp4")
+def main(media_name):
+    camera = cv2.VideoCapture(media_name)
 
     start_time = time.time()
     frame_counter = 0
@@ -44,6 +43,7 @@ def main():
             break
 
         frame = imutils.resize(frame, width=1400)  # max 1920 - min 1000
+
         if frame_counter % Factors.OPTIMIZATION_FACTOR == 0:  # Wpływ na optymalizację kodu -> pomijanie klatek
             i += 1
             face_analyzer.initialize_frame(frame)
@@ -98,6 +98,12 @@ def main():
                     else:
                         Outcomes.IS_POSE_DETECTED = False  # Jeśli nie znaleziono ciała
 
+        #AIanalysing(face_analyzer.results, pose_analyzer.results)
+        try:
+            AIanalysing(face_analyzer.results, pose_analyzer.results)
+        except:
+            pass
+
         end_time = time.time() - start_time
         fps = frame_counter / end_time
 
@@ -125,4 +131,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    names = ["phone.jpg", "face1.jpg"]
+    for name in names:
+        main(name)
