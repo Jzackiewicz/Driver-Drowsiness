@@ -40,7 +40,7 @@ class Indices:
 
 
 class Factors:
-    EYES_RATIO_FACTOR = 44 #0.25
+    EYES_RATIO_FACTOR = 44  # 0.25
     LIPS_RATIO_FACTOR = 0.55
     HAND_FACE_DISTANCE_FACTOR = 2.4
     OPENED_MOUTH_FRAME = 10
@@ -63,7 +63,7 @@ class Factors:
     SET_THRESHOLD_LEFT = False
     SET_THRESHOLD_RIGHT = False
 
-    AVERAGING_FACTOR = 30
+    AVERAGING_FACTOR = 1
     OPTIMIZATION_FACTOR = 1
 
     FONTS = cv2.FONT_HERSHEY_COMPLEX
@@ -111,9 +111,9 @@ KEYS = {
     54: "add_remove(Outcomes.ON_SCREEN,'pose mesh')",  # key '6'
     55: "add_remove(Outcomes.ON_SCREEN,'hands')",  # key '7'
     56: "cv2.imwrite('wynik2.jpg', frame)",  # key '8'
-    99: "Factors.CONF_MODE = not Factors.CONF_MODE", # key 'c'
-    8: "Outcomes.ON_SCREEN = []", # key 'Backspace'
-    115: "write_thresholds_2file()", # key 's'
+    99: "Factors.CONF_MODE = not Factors.CONF_MODE",  # key 'c'
+    8: "Outcomes.ON_SCREEN = []",  # key 'Backspace'
+    115: "write_thresholds_2file()",  # key 's'
     # 32: "Factors.SET_THRESHOLD = True",
     # 117: "Factors.SET_THRESHOLD_UP = True",  # u UP
     # 100: "Factors.SET_THRESHOLD_DOWN = True",  # d DOWN
