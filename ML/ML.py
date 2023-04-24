@@ -9,7 +9,7 @@ from sklearn.metrics import accuracy_score
 import pickle
 
 if __name__ == '__main__':
-    df = pd.read_csv('coordsnew.csv', delimiter=";")
+    df = pd.read_csv('coords-y_ny.csv', delimiter=";")
     X = df.drop('class', axis=1)  # features
     Y = df['class']  # target value
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=1234)
@@ -26,9 +26,13 @@ if __name__ == '__main__':
         model = pipeline.fit(X_train.values, Y_train)
         fit_models[algo] = model
 
+    pl_accuracies = {}
     for algo, model in fit_models.items():
         yhat = model.predict(X_test)
+        pl_accuracies[algo] = accuracy_score(Y_test, yhat)
         print(algo, accuracy_score(Y_test, yhat))
 
-    with open('ML/body_language.pkl', 'wb') as f:
+    max_acc = max(pl_accuracies, key=pl_accuracies.get)
+    print(max_acc)
+    with open('yawn_noyawn_model.pkl', mode='wb') as f:
         pickle.dump(fit_models['lr'], f)

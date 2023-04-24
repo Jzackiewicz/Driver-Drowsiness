@@ -9,7 +9,7 @@ from ML.saving import Savingdata
 
 
 def main(media_name):
-    with open('ML/firstmodel.pkl', 'rb') as f:
+    with open('ML/yawn_noyawn_model.pkl', 'rb') as f:
         model = pickle.load(f)
     print(model)
 
@@ -25,12 +25,15 @@ def main(media_name):
             # Make Detections
             image = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
             results = holistic.process(image)
-
-
+            #print(results.face_landmarks.landmark)
+                # ------------------------------------ Saving2csv ------------------------------------
             # try:
-            #     Savingdata2(results)
+            #     Savingdata(results)
             # except:
             #     pass
+
+
+                #------------------------------------ Making detections ------------------------------------
             try:
                 pose = results.pose_landmarks.landmark
                 pose_row = list(
@@ -49,7 +52,7 @@ def main(media_name):
                 pass
 
             cv2.imshow('Raw Webcam Feed', frame)
-            if cv2.waitKey(10) & 0xFF == ord('q'):
+            if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 
     cap.release()
@@ -57,9 +60,8 @@ def main(media_name):
 
 
 if __name__ == '__main__':
-    # names = os.listdir("C:/Users/kubaz/PycharmProjects/PBL/ML/1dataset/ActiveSubjects")
+    # names = os.listdir("C:/Users/kubaz/PycharmProjects/PBL/ML/0dataset/no_yawn")
     #
     # for i in tqdm(range(len(names))):
-    #     # print(i)
-    #     main("C:/Users/kubaz/PycharmProjects/PBL/ML/1dataset/FatigueSubjects/" + names[i])
-    main("film3.mp4")
+    #     main("C:/Users/kubaz/PycharmProjects/PBL/ML/0dataset/no_yawn/" + names[i])
+    main("ziew.mp4")

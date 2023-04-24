@@ -3,8 +3,9 @@ import os
 
 import numpy as np
 
-FILE_NAME = 'ML/coordsnew.csv'
-class_name = "Awake"
+FILE_NAME = 'ML/coords-y_ny.csv'
+class_name = "NoYawn"
+
 
 class Savingdata:
     def __init__(self, results):
