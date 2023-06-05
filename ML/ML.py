@@ -9,7 +9,7 @@ from sklearn.metrics import accuracy_score
 import pickle
 
 if __name__ == '__main__':
-    df = pd.read_csv('coords-y_ny.csv', delimiter=";")
+    df = pd.read_csv('new_hope.csv', delimiter=";")
     X = df.drop('class', axis=1)  # features
     Y = df['class']  # target value
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=1234)
@@ -34,5 +34,5 @@ if __name__ == '__main__':
 
     max_acc = max(pl_accuracies, key=pl_accuracies.get)
     print(max_acc)
-    with open('yawn_noyawn_model.pkl', mode='wb') as f:
+    with open('newhope_model.pkl', mode='wb') as f:
         pickle.dump(fit_models['lr'], f)
