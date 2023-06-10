@@ -4,8 +4,8 @@ import os
 
 import numpy as np
 
-FILE_NAME = 'ML/new_hope.csv'
-CLASS_NAME = "Fatigue"
+FILE_NAME = '3data.csv'
+CLASS_NAME = "NonDrowsy"
 
 
 class Savingdata:
@@ -40,7 +40,6 @@ class Savingdata:
 
         normalised = [[landmark[0] / self.image_width / x_ratio, landmark[1] / self.image_height / y_ratio,
                        landmark[2] / self.image_width / x_ratio] for landmark in ldmrks]
-
 
         self.normalised_coords = normalised
 
