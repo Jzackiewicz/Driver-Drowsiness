@@ -8,33 +8,43 @@ from tqdm import tqdm
 from saving import Savingdata
 
 
+def add_borders(image):
+    image = imutils.resize(image, width=500)
+    border_size = 100
+    image = cv2.copyMakeBorder(
+        image,
+        border_size,
+        border_size,
+        border_size,
+        border_size,
+        cv2.BORDER_CONSTANT,
+        value=(0, 0, 0)
+    )
+    return image
+
+
 def main(media_name):
-    mp_holistic = mp.solutions.holistic
-    # cap = cv2.VideoCapture("http://192.168.33.100:8080//videofeed")
-    cap = cv2.VideoCapture(media_name)
+    frame = cv2.imread(media_name)
+    # frame = add_borders(frame) # Needed if images are too small
+
+    im_height, im_width, _ = frame.shape
+
+    mp_holistic = mp.solutions.holistic  # Mediapipe Solutions
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5,
                               refine_face_landmarks=True) as holistic:
-        while True:
-            ret, frame = cap.read()
-            if not ret:
-                print(f"{media_name} can't be captured!")
-                break
-            frame = imutils.resize(frame, width=1000)
 
-            im_height, im_width, _ = frame.shape
+        image = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+        results = holistic.process(image)
 
-            image = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-            results = holistic.process(image)
-
-            try:
-                Savingdata(results, im_width, im_height)
-            except Exception as e:
-                print(f" Face in {media_name} not found!")
+        try:
+            Savingdata(results, im_width, im_height)
+        except Exception as e:
+            print(e)
 
 
 if __name__ == '__main__':
-    folder_dir = "C:/Users/kubaz/PycharmProjects/PBL/ML/3dataset/NonDrowsy"
-    names = os.listdir(folder_dir)
+    data_dir = "xyz"
+    names = os.listdir(data_dir)
 
     for i in tqdm(range(len(names))):
-        main(folder_dir + "/" + names[i])
+        main(data_dir + "/" + names[i])

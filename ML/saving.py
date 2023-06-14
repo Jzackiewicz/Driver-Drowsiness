@@ -4,8 +4,8 @@ import os
 
 import numpy as np
 
-FILE_NAME = '3data.csv'
-CLASS_NAME = "NonDrowsy"
+FILE_NAME = 'xyz.csv'
+CLASS_NAME = "xyz"
 
 
 class Savingdata:
@@ -22,10 +22,11 @@ class Savingdata:
         nose_point = [self.face_landmarks[1].x * self.image_width, self.face_landmarks[1].y * self.image_height,
                       self.face_landmarks[1].z * self.image_width]
         nose_dist = [math.sqrt((landmark.x * self.image_width - nose_point[0]) ** 2 +
-                               (landmark.y * self.image_height - nose_point[1]) ** 2 +
-                               (landmark.z * self.image_width - nose_point[2]) ** 2)
+                               (landmark.y * self.image_height - nose_point[1]) ** 2)
                      for landmark in self.face_landmarks]
+
         max_dist = max(nose_dist)
+
 
         square_side = max_dist * 2
         x_ratio = square_side / self.image_width
