@@ -82,7 +82,7 @@ class PoseAnalysing(MediaPipeAnalysing):
         Outcomes.HANDS_FACE_RATIO = []
         Outcomes.HANDS_FACE_RATIO.append(self.hands_face_ratio)
 
-    def draw_indicators(self, objects, frame):
+    def draw_indicators(self, objects):
         height = 150
         f_width = round(100 / 2100 * self.frame_width)
         f_height = round(1000 / 1181 * self.frame_height)
@@ -95,7 +95,7 @@ class PoseAnalysing(MediaPipeAnalysing):
                                                color=(150, 0, 0))  # color=(100, 100, 100))
 
             if self.results.pose_landmarks:
-                mp_drawing.draw_landmarks(frame, self.results.pose_landmarks, mp_pose.POSE_CONNECTIONS, draw_spec,
+                mp_drawing.draw_landmarks(self.img, self.results.pose_landmarks, mp_pose.POSE_CONNECTIONS, draw_spec,
                                           draw_spec)
 
         if 'hands' in objects:
@@ -109,12 +109,12 @@ class PoseAnalysing(MediaPipeAnalysing):
                 pos = ''
                 color = utils.WHITE
 
-            utils.colorBackgroundText(frame, f'Hand-Face dist.: {pos}{self.hands_face_ratio[0]}|'
+            utils.colorBackgroundText(self.img, f'Hand-Face dist.: {pos}{self.hands_face_ratio[0]}|'
                                              f'{self.hands_face_ratio[1]}|{self.hands_face_ratio[2]}|'
                                              f'{self.hands_face_ratio[3]}',
                                       Factors.FONTS, font_scale, (f_width, f_height + height), 2, utils.BLACK, color)
 
-            utils.colorBackgroundText(frame, f'Threshold: {Factors.HAND_FACE_DISTANCE_FACTOR}', Factors.FONTS,
+            utils.colorBackgroundText(self.img, f'Threshold: {Factors.HAND_FACE_DISTANCE_FACTOR}', Factors.FONTS,
                                       font_scale, (f_width, f_height + 50 + height), 2, utils.BLACK, utils.WHITE)
 
-        return frame
+        return self.img
