@@ -73,4 +73,4 @@ if __name__ == '__main__':
     #video_dir = "..."
     video_dir = 0  # if using webcam
 
-    main(video_dir, models[2])
+    main(video_dir, models[1])
