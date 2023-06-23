@@ -70,7 +70,7 @@ def main(media_name, model_type):
 
 if __name__ == '__main__':
     models = ["models/model2NS.pkl", "models/model2AUGNS.pkl", "firstmodels/model3.pkl"]
-    video_dir = "..."
-    # video_dir = 0  # if using webcam
+    #video_dir = "..."
+    video_dir = 0  # if using webcam
 
     main(video_dir, models[2])

@@ -89,6 +89,6 @@ def main(media_name):
 
 
 if __name__ == '__main__':
-    video_dir = "..."
-    # video_dir = 0  # if using webcam
+    #video_dir = "..."
+    video_dir = 0  # if using webcam
     main(video_dir)
