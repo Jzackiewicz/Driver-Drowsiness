@@ -38,12 +38,12 @@ def main(media_name):
 
         try:
             Savingdata(results, im_width, im_height)
-        except Exception as e:
-            print(e)
+        except:
+            pass
 
 
 if __name__ == '__main__':
-    data_dir = "xyz"
+    data_dir = "..."
     names = os.listdir(data_dir)
 
     for i in tqdm(range(len(names))):

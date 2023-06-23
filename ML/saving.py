@@ -4,8 +4,8 @@ import os
 
 import numpy as np
 
-FILE_NAME = 'xyz.csv'
-CLASS_NAME = "xyz"
+FILE_NAME = 'new_dataset.csv'
+CLASS_NAME = "clname"
 
 
 class Savingdata:

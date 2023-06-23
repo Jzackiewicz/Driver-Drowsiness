@@ -4,8 +4,8 @@ import cv2
 import imgaug.augmenters as iaa
 from tqdm import tqdm
 
-from_path = "/ML/1dataset/FatigueSubjects"
-to_path = r"/ML/1datasetAUG/FatigueSubjects/"
+from_path = "..."
+to_path = r"..."
 
 
 def get_new_images(image_dir):
@@ -27,7 +27,6 @@ def get_new_images(image_dir):
 def write_new_images(images, idx):
     j = 0
     for img in images:
-        # cv2.waitKey(1)
         cv2.imwrite(to_path + 'pic' + str(idx + 1) + '_aug(' + str(j + 1) + ').jpg', img[0])
         j += 1
 
